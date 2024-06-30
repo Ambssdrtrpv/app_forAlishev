@@ -7,9 +7,15 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="testBean"
-          class="ru.myApp.forAlishev.TestBean">
-        <constructor-arg value="Misha"/>
+    <bean id="musicBean"
+          class="ru.myApp.forAlishev.ClasicalMusic">
+    </bean>
+    <bean id="musicPlayer"
+        class="ru.myApp.forAlishev.MusicPlayer">
+        <!-- <constructor-arg ref = "musicBean"/>  это внедрение через конструктор-->
+        <property name="music" ref = "musicBean"/> <!-- указываем имя сеттера(camelCase компилятор гений
+        поэтому сам отбрасывает в сеттере слово Set а music пишет с маленькой) и
+        ссылку на бин который мы хотим использвать в качестве зависимости -->
     </bean>
 
 </beans>

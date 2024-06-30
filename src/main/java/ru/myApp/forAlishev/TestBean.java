@@ -1,4 +1,5 @@
 package ru.myApp.forAlishev;
+/*
 
 public class TestBean {
     private String name;
@@ -12,3 +13,4 @@ public class TestBean {
         this.name = name;
     }
 }
+*/
