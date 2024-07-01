@@ -1,6 +1,10 @@
 package ru.myApp.forAlishev;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //ClassPathXmlApplicationContext  этот класс загружен благодря dependency
 // из pom файла а сам класс считывает и
 // помещает все бины, которые там написаны в application context
@@ -21,7 +25,17 @@ public class TestSpring {
         //Music music = context.getBean("musicBean",Music.class); // получили объект реализующих интерфейс music
         //MusicPlayer musicPlayer = new MusicPlayer(music);
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer.playMusic();
+        /*musicPlayer.playMusic();
+        System.out.println(musicPlayer.getName());
+        System.out.println(musicPlayer.getVolume());*/
+        ClasicalMusic musicBean1 = context.getBean("musicBean1", ClasicalMusic.class);
+        RapMusic musicBean2 = context.getBean("musicBean2", RapMusic.class);
+        RockMusic musicBean3 = context.getBean("musicBean3", RockMusic.class);
+        List<Music> musicList2 = new ArrayList<>();
+        musicList2.add(musicBean1);
+        musicList2.add(musicBean2);
+        musicList2.add(musicBean3);
+        musicPlayer.playMusicList(musicList2);
         context.close();
     }
 }

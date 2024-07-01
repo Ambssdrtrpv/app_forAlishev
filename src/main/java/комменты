@@ -1,0 +1,9 @@
+<!-- <constructor-arg ref = "musicBean"/>  это внедрение через конструктор -->
+        <!-- <property name="music" ref = "musicBean"/> <!- указываем имя сеттера(camelCase компилятор гений
+        поэтому сам отбрасывает в сеттере слово Set а music пишет с маленькой) и
+        ссылку на бин который мы хотим использвать в качестве зависимости -->
+        <!-- <property name="name" value="Some name"/> это способ ручного заполнения полей
+        <property name="volume" value="50"/> --> -->
+        <!-- <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean> -->

@@ -6,16 +6,19 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
-    <bean id="musicBean"
-          class="ru.myApp.forAlishev.ClasicalMusic">
+  <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <bean id="musicBean1" class="ru.myApp.forAlishev.ClasicalMusic"></bean>
+    <bean id="musicBean2" class="ru.myApp.forAlishev.RapMusic"></bean>
+    <bean id="musicBean3" class="ru.myApp.forAlishev.RockMusic">
     </bean>
-    <bean id="musicPlayer"
-        class="ru.myApp.forAlishev.MusicPlayer">
-        <!-- <constructor-arg ref = "musicBean"/>  это внедрение через конструктор-->
-        <property name="music" ref = "musicBean"/> <!-- указываем имя сеттера(camelCase компилятор гений
-        поэтому сам отбрасывает в сеттере слово Set а music пишет с маленькой) и
-        ссылку на бин который мы хотим использвать в качестве зависимости -->
+    <bean id="musicPlayer" class="ru.myApp.forAlishev.MusicPlayer">
+        <property name="musicList">
+            <list>
+                <ref bean="musicBean1"></ref>
+                <ref bean="musicBean2"></ref>
+                <ref bean="musicBean3"></ref>
+            </list>
+        </property>
     </bean>
 
 </beans>
