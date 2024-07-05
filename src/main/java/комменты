@@ -7,3 +7,46 @@
         <!-- <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean> -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="musicBean"
+          class="ru.myApp.forAlishev.ClasicalMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+        factory-method="getClasicalMusic">
+    </bean>
+
+<!--    <bean id="musicPlayer"-->
+<!--          class="ru.myApp.forAlishev.MusicPlayer"-->
+<!--          scope = "prototype">-->
+<!--        <property name="music" ref="musicBean"/>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
+
+</beans>
+
+
+//ClassPathXmlApplicationContext  этот класс загружен благодря dependency
+// из pom файла а сам класс считывает и
+// помещает все бины, которые там написаны в application context
+// в качестве аргумента принимает название конфигурационного файла спринга
+//в файле applicationContext происходит работа с бинами в моем случае создание
+//а вызывая метод getBean идет id бина и тот класс бин которого нужно получить(так как объект
+// этого класса я хочу полуичть) то есть в этой строке мы получили объект данного класса
+//когда мы закончили работу с applicationContext мы его закрывае
+
+//1)описали получениет бина в конфигурационном файл applicationContext
+//2)спринг прочитал этото файл с помощью класса ClassPathXmlApplicationContext
+// и тем самым создал бины которые описаны в applicationContext
+//3)из самого applicationContext получаем бины выбранного класса

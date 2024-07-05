@@ -1,45 +1,28 @@
 package ru.myApp.forAlishev;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+import java.util.Random;
+
+@Component
 public class MusicPlayer {
-    //private Music music;
-    private List<Music> musicList = new ArrayList<>();
-    private String name;
-    private int volume;
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-    public int getVolume() {
-        return volume;
+    private Music classicalMusic;
+    private Music rockMusic;
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    //IoC
-//    public MusicPlayer(Music music) {
-//        this.music = music;
-//    }
-//    public void setMusic(Music music){
-//        this.music = music;
-//    }
-    public MusicPlayer() {}
-//    public void playMusic(){
-//        System.out.println("Playing:" + music.getSong());
-//    }
-    public void playMusicList(List<Music> musicList){
-        for (int i=0; i<musicList.size(); i++) {
-            System.out.println(musicList.get(i).getSong());
+    public void playMusic(MusicType musicType) {
+        Random random = new Random();
+        int randomNum = random.nextInt(3);
+        if(musicType == MusicType.CLASSICAL){
+            System.out.println(classicalMusic.getSong().get(randomNum));
+        } else {
+            System.out.println(rockMusic.getSong().get(randomNum));
         }
     }
 }
